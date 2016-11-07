@@ -10,5 +10,11 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.4.4"
+  },
+  "dependencies": {
+    "co": "^4.6.0",
+    "lodash": "^4.16.6",
+    "moment": "^2.15.2",
+    "mongodb": "^2.2.11"
   }
 }
