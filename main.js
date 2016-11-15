@@ -1,6 +1,12 @@
-const {app, BrowserWindow} = require('electron');
+const {app, BrowserWindow, ipcMain} = require('electron');
 const notify = require('./lib/notify'); 
+const router = require('./lib/router');
 
+require('electron-reload')(__dirname, {
+  ignored: /node_modules|[\/\\]\./
+});
+
+router();
 let win;
 
 let createWindow = () => {

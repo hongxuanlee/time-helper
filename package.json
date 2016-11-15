@@ -4,17 +4,38 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "test": "exit 0"
+    "start": "electron main.js",
+    "test": "exit 0",
+    "watch": "./node_modules/.bin/webpack-dev-server",
+    "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "author": "kino",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.4"
+    "babel": "^6.5.2",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.7",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
+    "css-loader": "^0.25.0",
+    "electron": "^1.4.4",
+    "electron-prebuilt": "^1.4.5",
+    "electron-reload": "^1.0.3",
+    "node-libs-browser": "^1.0.0",
+    "style-loader": "^0.13.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.13.3",
+    "webpack-dev-server": "^1.16.2",
+    "webpack-target-electron-renderer": "^0.4.0"
   },
   "dependencies": {
     "co": "^4.6.0",
     "lodash": "^4.16.6",
     "moment": "^2.15.2",
-    "mongodb": "^2.2.11"
+    "mongodb": "^2.2.11",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
   }
 }
