@@ -1,46 +1,24 @@
-import React, {
-  Component
-} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
-import {
-  remote
-} from 'electron';
-import request from './request';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import TaskList from './components/TaskList';
+import AppBar from 'material-ui/AppBar';
 
-class Main extends Component {
-  constructor(props) {
-    super();
-    this.state = {
-      job: null
-    }
-  }
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
-  componentDidMount() {
-    let self = this;
-    request('dailyjob').then((data) => {
-      self.setState({
-        job: data
-      });
-    });
-  }
+const Content = () => (
+    <div>
+        <AppBar title="task list" />
+        <TaskList />
+    </div>
+);
 
-  renderList(obj) {
-      return ( < li > {
-          obj.name
-        } - {
-          obj.typeName
-        } < /li>)
-      }
-
-  render() {
-      if (this.state.job) {
-          return ( < ul > {
-              this.state.job.map(this.renderList.bind(this))
-            } </ul>)
-          }
-          return <div > loading... < /div>
-      }
-}
+const Main = () => (
+    <MuiThemeProvider>
+        <Content />
+    </MuiThemeProvider>
+);
 
 let main = document.getElementById('main');
-ReactDOM.render(< Main / > , main);
+ReactDOM.render( < Main / > , main);

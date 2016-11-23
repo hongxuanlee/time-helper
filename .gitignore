@@ -3,3 +3,6 @@ coverage
 config.js
 *.swp
 *.swo
+*/*.swp
+.DS_Store
+*/.DS_Store
