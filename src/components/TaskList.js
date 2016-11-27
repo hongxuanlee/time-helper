@@ -11,37 +11,29 @@ import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 const goDetail = function(){
-   alert(this.props.id);
-}
+  alert(this.id);
+};
 
-const RightIcon = (
-  <IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+const RightIcon = (id) => {
+  let ctx = {};
+  ctx.id = id;
+  return (<IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-            <MenuItem primaryText="detail" onClick={goDetail.bind(this)}/>
-            <MenuItem primaryText="edit" />
-            <MenuItem primaryText="remove" />
-  </IconMenu>
-);
+          <MenuItem primaryText="detail" onClick={goDetail.bind(ctx)}/>
+          <MenuItem primaryText="edit" />
+          <MenuItem primaryText="remove" />
+        </IconMenu>); 
+};
 
-class RightIconMenu extends Component{
-  render() {
-     return (
-        <IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-        >
-            <MenuItem primaryText="detail" onClick={goDetail.bind(this)}/>
-            <MenuItem primaryText="edit" />
-            <MenuItem primaryText="remove" />
-        </IconMenu>
-      );
-    } 
-  } 
+const style = {
+  textAlign: 'center',
+  marginTop: '20px'
+};
 
-class TaskList extends Component {
-  constructor(props) {
+class JobList extends Component {
+  constructor() {
     super();
     this.state = {
       job: null
@@ -59,7 +51,7 @@ class TaskList extends Component {
 
   renderItem(obj, idx) {
     return ( <ListItem key = {idx}
-      rightIconButton={RightIcon}
+      rightIconButton={RightIcon(idx)}
       > 
       {obj.name}< /ListItem>
     );
@@ -71,8 +63,8 @@ class TaskList extends Component {
         this.state.job.map(this.renderItem.bind(this))
         } < /List>);
     }
-    return (<CircularProgress />);
+    return (<div style={style}><CircularProgress/></div>);
   }
 }
 
-export default TaskList
+export default JobList

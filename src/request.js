@@ -1,8 +1,8 @@
 const {ipcRenderer} = require('electron');
+const Timeout = 10000;
 
 let request = (name, args) => {
   return new Promise((resolve, reject) => {
-    console.log(name, args);
     if(!name){
       return;
     }
@@ -10,7 +10,10 @@ let request = (name, args) => {
     ipcRenderer.once(`${name}_reply`, (event, arg) => {
       resolve(arg);
     });
+    setTimeout(() => {
+      reject('timeout');
+    }, Timeout);
   });
-}
+};
 
-module.exports = request
+module.exports = request;

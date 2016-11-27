@@ -1,10 +1,12 @@
 const {app, BrowserWindow, ipcMain} = require('electron');
+const path = require('path');
+require('electron-reload')(path.join(__dirname, '..'), {
+  electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+  ignored: /node_modules|[\/\\]\./
+});
 const notify = require('./lib/notify'); 
 const router = require('./lib/router');
 
-require('electron-reload')(__dirname, {
-  ignored: /node_modules|[\/\\]\./
-});
 
 router();
 let win;
@@ -16,10 +18,10 @@ let createWindow = () => {
 
   win.on('closed', () => {
     win = null;
-  })
-}
+  });
+};
 
-global.msg = 'Hi kino!'
+global.msg = 'Hi kino!';
 
 app.on('ready', createWindow);
 
@@ -33,5 +35,5 @@ app.on('activate', () => {
    if(win === null){
       createWindow();
    }
-})
+});
 
