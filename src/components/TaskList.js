@@ -10,18 +10,13 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
-const goDetail = function(){
-  alert(this.id);
-};
 
-const RightIcon = (id) => {
-  let ctx = {};
-  ctx.id = id;
+const RightIcon = (obj, onclick) => {
   return (<IconMenu iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
 anchorOrigin={{horizontal: 'right', vertical: 'top'}}
       targetOrigin={{horizontal: 'right', vertical: 'top'}}
         >
-          <MenuItem primaryText="detail" onClick={goDetail.bind(ctx)}/>
+          <MenuItem primaryText="detail" onClick={() => onclick('jobDetail', obj)}/>
           <MenuItem primaryText="edit" />
           <MenuItem primaryText="remove" />
         </IconMenu>); 
@@ -51,7 +46,7 @@ class JobList extends Component {
 
   renderItem(obj, idx) {
     return ( <ListItem key = {idx}
-      rightIconButton={RightIcon(idx)}
+      rightIconButton={RightIcon(obj, this.props.clickRightICon)}
       > 
       {obj.name}< /ListItem>
     );
@@ -67,4 +62,4 @@ class JobList extends Component {
   }
 }
 
-export default JobList
+export default JobList;
